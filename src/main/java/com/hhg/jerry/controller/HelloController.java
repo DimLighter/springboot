@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class HelloController {
     @RequestMapping("/hello")
     public String index(){
+        System.out.println(this.getClass().getSimpleName() + " " + Thread.currentThread().getStackTrace()[1].getMethodName());
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("name","dennis");
         jsonObject.put("age", 33);
