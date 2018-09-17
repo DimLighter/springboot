@@ -1,6 +1,8 @@
 package com.hhg.jerry.filter;
 
 import org.apache.catalina.filters.RemoteIpFilter;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -11,6 +13,7 @@ import java.io.IOException;
 
 @Configuration
 public class WebConfiguration {
+    private Logger logger = LoggerFactory.getLogger(this.getClass());
     @Bean
     public RemoteIpFilter remoteIpFilter() {
         return new RemoteIpFilter();
@@ -37,12 +40,12 @@ public class WebConfiguration {
         @Override
         public void doFilter(ServletRequest srequest, ServletResponse sresponse, FilterChain filterChain)
                 throws IOException, ServletException {
-            System.out.println(this.getClass().getSimpleName() + " " + Thread.currentThread().getStackTrace()[1].getMethodName() + " enter");
+            logger.debug(this.getClass().getSimpleName() + " " + Thread.currentThread().getStackTrace()[1].getMethodName() + " enter");
             // TODO Auto-generated method stub
             HttpServletRequest request = (HttpServletRequest) srequest;
-            System.out.println("this is MyFilter,url :"+request.getRequestURI());
+            logger.info("this is MyFilter,url :"+request.getRequestURI());
             filterChain.doFilter(srequest, sresponse);
-            System.out.println(this.getClass().getSimpleName() + " " + Thread.currentThread().getStackTrace()[1].getMethodName() + " exit");
+            logger.debug(this.getClass().getSimpleName() + " " + Thread.currentThread().getStackTrace()[1].getMethodName() + " exit");
         }
 
         @Override

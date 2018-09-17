@@ -1,5 +1,8 @@
 package com.hhg.jerry.filter;
 
+import org.apache.commons.logging.Log;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.core.annotation.Order;
 
 import javax.servlet.*;
@@ -13,16 +16,17 @@ import java.io.IOException;
 @Order(1)
 @WebFilter(filterName = "testFilter1", urlPatterns = "/*")
 public class TestFilter1 implements Filter {
+    private Logger logger = LoggerFactory.getLogger(this.getClass());
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
-        System.out.println("TestFilter1 init ...");
+        logger.info("TestFilter1 init ...");
     }
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-        System.out.println("TestFilter1 enter ...");
+        logger.debug("TestFilter1 enter ...");
         chain.doFilter(request,response);
-        System.out.println("TestFilter1 exit ...");
+        logger.debug("TestFilter1 exit ...");
     }
 
     @Override

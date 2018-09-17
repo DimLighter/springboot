@@ -3,6 +3,8 @@ package com.hhg.jerry.controller;
 import com.alibaba.fastjson.JSONObject;
 import com.hhg.jerry.properties.CustomizeProperties;
 import com.hhg.jerry.properties.SpringBootProperties;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,6 +16,7 @@ import javax.annotation.Resource;
  */
 @RestController
 public class HelloController {
+    private Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Resource //default by name find, j2ee annotation
     SpringBootProperties springBootProperties;
@@ -22,7 +25,7 @@ public class HelloController {
 
     @RequestMapping("/hello")
     public String index(){
-        System.out.println(this.getClass().getSimpleName() + " " + Thread.currentThread().getStackTrace()[1].getMethodName());
+        logger.debug(this.getClass().getSimpleName() + " " + Thread.currentThread().getStackTrace()[1].getMethodName());
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("name",customizeProperties.getName());
         jsonObject.put("alias",customizeProperties.getAlias());
