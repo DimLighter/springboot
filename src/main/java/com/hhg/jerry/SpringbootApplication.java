@@ -13,6 +13,6 @@ public class SpringbootApplication {
 	public static void main(String[] args) {
 		logger.info("Before start application : {}" , SpringbootApplication.class.getName());
 		SpringApplication.run(SpringbootApplication.class, args);
-		logger.info("Service started ... Service name : {} " + SpringbootApplication.class.getName());
+		logger.info("Service started ... Service name : {} ", 	SpringbootApplication.class.getName());
 	}
 }
