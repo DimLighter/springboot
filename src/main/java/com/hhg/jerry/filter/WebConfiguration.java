@@ -14,10 +14,6 @@ import java.io.IOException;
 @Configuration
 public class WebConfiguration {
     private Logger logger = LoggerFactory.getLogger(this.getClass());
-    @Bean
-    public RemoteIpFilter remoteIpFilter() {
-        return new RemoteIpFilter();
-    }
 
     @Bean
     public FilterRegistrationBean testFilterRegistration() {
