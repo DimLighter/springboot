@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 /**
  * Created by lining on 2018/9/14.
  */
-@Component
+@Configuration
 @PropertySource("classpath:jerry.properties")
 @ConfigurationProperties(prefix = "jerry")
 public class CustomizeProperties {
